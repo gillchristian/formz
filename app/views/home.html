@@ -1,0 +1,148 @@
+
+<div class="container-fluid box">
+  <div class="secondary">
+    <h1 class="h3 center-text">Test</h1>
+    <pre class="test"> 
+Form data: <br>
+{{vm.form}}</pre>
+    <pre class="test">Password valid? {{testForm.pass.$valid}}</pre>
+    <pre class="test">Range valid? {{testForm.range.$valid}}</pre>
+    <pre class="test">Mail valid? {{testForm.mail.$valid}}</pre>
+    <pre class="test">Alerts? {{vm.activeAlerts}}</pre>
+    <pre class="test">Checkboxes {{vm.checkboxes}}</pre>
+    <pre class="test">sex {{vm.sex}}</pre>
+  </div>
+  <div class="main-col">
+    <tabset justified="true">
+      <tab heading="Step 1">
+        <form name="stepOne" novalidate="novalidate" class="form">
+          <alert ng-repeat="alert in vm.activeAlerts" type="{{alert.type}}" close="vm.dismissAlert($index)">{{alert.msg}}</alert>
+          <div ng-class="{'has-error': stepOne.name.$touched &amp;&amp; stepOne.name.$invalid}" class="form-group has-feedback">
+            <label class="control-label">Name</label>
+            <div class="input-group">
+              <div class="input-group-addon">Sr.</div>
+              <input ng-model="vm.form.name" type="text" name="name" required="required" class="form-control"/>
+            </div>
+          </div>
+          <div ng-class="{'has-error': stepOne.lastName.$touched &amp;&amp; stepOne.lastName.$invalid}" class="form-group has-feedback">
+            <label class="control-label">Last Name</label>
+            <input ng-model="vm.form.lastName" type="text" name="lastName" required="required" class="form-control"/>
+          </div>
+          <div ng-class="{'has-error': stepOne.username.$touched &amp;&amp; stepOne.username.$invalid,'has-success': stepOne.username.$touched &amp;&amp; stepOne.username.$valid}" class="form-group has-feedback">
+            <label class="control-label">username</label>
+            <input ng-model="vm.form.username" type="text" name="username" required="required" class="form-control"/><span ng-show="stepOne.username.$touched &amp;&amp; stepOne.username.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span><span ng-show="stepOne.username.$valid &amp;&amp; stepOne.username.$touched" class="glyphicon glyphicon-ok form-control-feedback"></span><span class="help-block">some help text here just for the shows</span>
+          </div>
+          <div ng-class="{'has-error': stepOne.pass.$touched &amp;&amp; stepOne.pass.$invalid , 'has-success': stepOne.pass.$touched &amp;&amp; stepOne.pass.$valid}" class="form-group has-feedback">
+            <label class="control-label">Password</label>
+            <input ng-model="vm.form.pass" type="password" name="pass" ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&amp;'])[^ ]{5,16}$/" required="required" ng-focus="vm.onFocus('pass')" ng-blur="vm.onBlur('pass')" class="form-control"/><span ng-show="stepOne.pass.$touched &amp;&amp; stepOne.pass.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span><span ng-show="stepOne.pass.$valid &amp;&amp; stepOne.pass.$touched" class="glyphicon glyphicon-ok form-control-feedback"></span><span ng-show="vm.focus.pass &amp;&amp; stepOne.pass.$invalid" class="help-block">Make sure your password is longer than 5 characters and has a number, a symbol (!@#$%^&') and a upercase leter</span>
+          </div>
+          <div class="form-group">
+            <button role="button" ng-disabled="stepOne.$invalid" class="pull-right btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </tab>
+      <tab heading="Step 2" disabled="stepOne.$invalid">
+        <form name="stepTwo" ng-submit="vm.submitForm(stepTwo.$valid)" novalidate="novalidate" class="form">
+          <alert ng-repeat="alert in vm.activeAlerts" type="{{alert.type}}" close="vm.dismissAlert($index)">{{alert.msg}}</alert>
+          <div ng-class="{'has-error': stepTwo.date.$touched &amp;&amp; stepTwo.date.$invalid}" class="form-group">
+            <label class="control-label">Birthdate</label>
+            <input ng-model="vm.form.date" name="date" type="date" datepicker-popup="datepicker-popup" is-open="date.opened" min-date="date.min" max-date="date.max" date-disabled="disabled(date, mode)" close-text="Close" required="required" class="form-control"/>
+          </div>
+          <div ng-class="{'has-error': stepTwo.mail.$touched &amp;&amp; stepTwo.mail.$invalid}" data-trigger-tooltip="stepTwo.mail.$touched &amp;&amp; stepTwo.mail.$invalid" class="form-group">
+            <label class="control-label">Mail</label>
+            <input ng-model="vm.form.mail" type="email" name="mail" tooltip-template="'app/views/templates/errorMessages/mail.html'" tooltip-class="tooltip-bg" tooltip-placement="right" tooltip-trigger="tooltipActivate" required="required" class="form-control"/>
+          </div>
+          <div ng-class="{'has-error': stepTwo.adress.$touched &amp;&amp; stepTwo.adress.$invalid}" class="form-group">
+            <label class="control-label">Street</label>
+            <input ng-model="vm.form.adress" type="text" name="adress" required="required" class="form-control"/>
+          </div>
+          <div ng-class="{'has-error': stepTwo.zip.$touched &amp;&amp; stepTwo.zip.$invalid}" class="form-group">
+            <label class="control-label">ZIP Code</label>
+            <input ng-model="vm.form.zip" type="text" name="zip" required="required" class="form-control"/>
+          </div>
+          <div class="form-group">
+            <label class="control-label">State</label>
+            <select ng-init="vm.form.state = vm.states[0]" ng-model="vm.form.state" ng-options="state for state in vm.states" required="required" class="form-control"></select>
+          </div>
+          <div ng-class="{'has-error': stepTwo.city.$touched &amp;&amp; stepTwo.city.$invalid}" class="form-group">
+            <label class="control-label">City</label>
+            <input ng-model="vm.form.city" type="text" name="city" required="required" class="form-control"/>
+          </div>
+          <div ng-class="{'has-error': stepTwo.range.$touched &amp;&amp; stepTwo.range.$invalid}" class="form-group">
+            <label class="control-label">Range test</label>
+            <input ng-model="vm.form.range" type="text" name="range" data-range="0-10" required="required" class="form-control"/><span class="help-block">enter a value between 0 and 10</span>
+          </div>
+          <div class="form-group">
+            <label ng-repeat="checkbox in vm.checkboxes" class="checkbox-inline">
+              <input type="checkbox" ng-model="checkbox.value"/>{{checkbox.label}} --- value{{$index}}
+            </label>
+          </div>
+          <div class="form-group">
+            <label ng-repeat="radio in vm.radios" class="radio-inline">
+              <input type="radio" ng-model="vm.sex" name="sex" value="{{radio.value}}" required="required"/>{{radio.label}}
+            </label>
+          </div>
+          <div class="form-group">
+            <label><input ng-model='vm.form.terms' value='yes' type='radio' name='terms' required> I acept the  <a ng-click="vm.openModal()" class="terms-link">Termns and Conditios</a></label>
+            <button type="submit" ng-disabled="stepTwo.$invalid" class="pull-right btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </tab>
+    </tabset>
+  </div>
+  <div class="secondary"></div>
+</div>
+<div ng-controller="FormController as vm">
+  <script type="text/ng-template" id="termsAndConditions.html">
+    <div class="modal-header">
+      <h3 class="modal-title primary">Terms and conditions</h3>
+    </div>
+    <div class="modal-body">
+      <ul>
+        <li ng-repeat="state in vm.states">{{state}}</li>
+      </ul>
+      <ol>
+        <li>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </li>
+        <li>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </li>
+        <li>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod 
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </li>
+      </ol>
+    </div>
+    <div class="modal-footer">
+      <button type="button" ng-click="vm.ok()" class="btn btn-success">Acept</button>
+      <button type="button" ng-click="vm.cancel()" class="btn btn-danger">Cancel</button>
+    </div>
+  </script>
+</div>

@@ -1,0 +1,57 @@
+/* ----- mixins ----- */
+.box {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+}
+
+.secondary {
+	background-color: #A6A8AB;
+	width: 30%;
+	height: 100vh;
+}
+
+.main-col {
+	background-color: #E5E6E7;
+	width: 40%;
+	margin-bottom: 30px;
+}
+
+.test {
+	margin: 10px auto;
+	width: 90%;
+}
+.form {
+	width: 90%;
+	margin: 20px auto 0;
+}
+
+.terms-link,
+.terms-link:link,
+.terms-link:hover,
+.terms-link:visited,
+.terms-link:active {
+	text-decoration: underline;
+	font-weight: 600;
+}
+
+
+.tooltip-bg .tooltip-inner {
+	background-color: rgba(169,68,66, 0.9);
+}
+
+.tooltip.right .tooltip-arrow {
+	border-right-color: rgba(169,68,66, 0.9);
+}
+
+
+/* --- text handling --- */
+.center-text {
+	text-align: center;
+}
+/*# sourceMappingURL=style.css.map */

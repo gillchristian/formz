@@ -1,0 +1,23 @@
+@alias {
+	bg: background;
+	bgc: background-color;
+	bgi: background-image;
+}
+
+$white: #fff;
+$black: #000;
+$dark-grey: #464646;
+$grey: #999;
+$light-grey: #DCDCDC;
+
+$salmon: #BFA194;
+
+$pastel: #F1EADC;
+$pastel-dark: #E5CFBE;
+$pastel-light: #F9F3EF;
+$pastel-shadow: #E5E6E7;
+
+$primary-font: #575756;
+$secondary-font: #A6A8AB;
+
+$error: #a94442;

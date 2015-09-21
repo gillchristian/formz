@@ -1,0 +1,22 @@
+//- home view
+.container-fluid.box
+  .secondary
+    //- showing the view model data
+    h1.h3.center-text Test
+    pre.test 
+      |Form data: <br>
+      |{{vm.form}}
+    pre.test Password valid? {{testForm.pass.$valid}}
+    pre.test Range valid? {{testForm.range.$valid}}
+    pre.test Mail valid? {{testForm.mail.$valid}}
+    pre.test Alerts? {{vm.activeAlerts}}
+    pre.test Checkboxes {{vm.checkboxes}}
+    pre.test sex {{vm.sex}}
+  .main-col
+    tabset(justified='true')
+      tab(heading='Step 1')
+        include ../includes/step1
+      tab(heading='Step 2', disabled='stepOne.$invalid')
+        include ../includes/step2
+  .secondary
+include ../includes/modal

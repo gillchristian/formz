@@ -1,0 +1,45 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    
+    base(href='/form/')
+    title Forms
+    
+    // stylesheets
+    //- boostrap
+    //- link(rel='stylesheet', type='text/css', href='//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css')
+    link(rel='stylesheet', type='text/css', href='bower_components/bootstrap/dist/css/bootstrap.min.css')
+    //- custom styles
+    link(rel='stylesheet', type='text/css', href='app/style/style.css')
+  
+  body(ng-app='formApp')
+    header
+    main
+      // dynamically loaded views
+      div(ui-view)
+    footer
+    // scripts & dependencies
+    //- angular
+    //- script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js')
+    script(src='bower_components/angular/angular.min.js')
+    //- ngMessages
+    //- script(src='//code.angularjs.org/1.4.4/angular-messages.js')
+    script(src='bower_components/angular-messages/angular-messages.min.js')
+    //- UI bootstrap
+    //- script(src='//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.4/ui-bootstrap.min.js')
+    script(src='bower_components/angular-bootstrap/ui-bootstrap.min.js')
+    //- script(src='//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.3/ui-bootstrap-tpls.min.js')
+    script(src='bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js')
+    //- UI router
+    //- script(src='//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js')
+    script(src='bower_components/angular-ui-router/release/angular-ui-router.min.js')
+
+    // app scripts
+    script(src='app/js/app.js')
+    //- controllers
+    script(src='app/js/controllers/formCtrl.js')
+    //- directives
+    script(src='app/js/directives/range.js')
+    script(src='app/js/directives/tooltipEvents.js')

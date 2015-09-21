@@ -1,0 +1,22 @@
+.form {
+	width: 90%;
+	margin: 20px auto 0;
+}
+
+.terms-link,
+.terms-link:link,
+.terms-link:hover,
+.terms-link:visited,
+.terms-link:active {
+	text-decoration: underline;
+	font-weight: 600;
+}
+
+
+.tooltip-bg .tooltip-inner {
+	bgc: rgba($error, 0.9);
+}
+
+.tooltip.right .tooltip-arrow {
+	border-right-color: rgba($error, 0.9);
+}

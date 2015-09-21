@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/form/">
+    <title>Forms</title>
+    <!-- stylesheets-->
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="app/style/style.css">
+  </head>
+  <body ng-app="formApp">
+    <header></header>
+    <main>
+      <!-- dynamically loaded views-->
+      <div ui-view></div>
+    </main>
+    <footer></footer>
+    <!-- scripts & dependencies-->
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-messages/angular-messages.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <!-- app scripts-->
+    <script src="app/js/app.js"></script>
+    <script src="app/js/controllers/formCtrl.js"></script>
+    <script src="app/js/directives/range.js"></script>
+    <script src="app/js/directives/tooltipEvents.js"></script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+div(ng-controller='FormController as vm')
+  script(type='text/ng-template', id='termsAndConditions.html')
+    .modal-header
+      h3.modal-title.primary Terms and conditions
+    .modal-body
+      //- include the bases y condiciones text here
+      include terms
+    .modal-footer
+      button.btn.btn-success(type='button', ng-click='vm.ok()') Acept
+      button.btn.btn-danger(type='button', ng-click='vm.cancel()') Cancel

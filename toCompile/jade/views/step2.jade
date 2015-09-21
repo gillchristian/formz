@@ -1,0 +1,69 @@
+form.form(name='stepTwo', ng-submit='vm.submitForm(stepTwo.$valid)', novalidate)
+  //- ----------------------------------------------------------------------------------
+  alert(ng-repeat='alert in vm.activeAlerts' type='{{alert.type}}' close='vm.dismissAlert($index)') {{alert.msg}}
+  //- ----------------------------------------------------------------------------------
+  .form-group(ng-class="{'has-error': stepTwo.date.$touched && stepTwo.date.$invalid}")
+    label.control-label Birthdate
+    input.form-control(ng-model='vm.form.date',
+          name='date',
+          type='date',
+          datepicker-popup,
+          is-open='date.opened',
+          min-date='date.min',
+          max-date='date.max',
+          date-disabled='disabled(date, mode)',
+          close-text='Close',
+          required)
+  //- ----------------------------------------------------------------------------------
+  .form-group(ng-class="{'has-error': stepTwo.adress.$touched && stepTwo.adress.$invalid}")
+    label.control-label Street
+    input.form-control(ng-model='vm.form.adress',
+          type='text',
+          name='adress'
+          required)
+  //- ----------------------------------------------------------------------------------
+  .form-group(ng-class="{'has-error': stepTwo.zip.$touched && stepTwo.zip.$invalid}")
+    label.control-label ZIP Code
+    input.form-control(ng-model='vm.form.zip',
+          type='text',
+          name='zip',
+          required)
+  //- ----------------------------------------------------------------------------------
+  .form-group
+    label.control-label State
+    select.form-control(ng-init = "vm.form.state = vm.states[0]", 
+                        ng-model='vm.form.state', 
+                        ng-options='state for state in vm.states',
+                        required)
+  //- ----------------------------------------------------------------------------------
+  .form-group(ng-class="{'has-error': stepTwo.city.$touched && stepTwo.city.$invalid}")
+    label.control-label City
+    input.form-control(ng-model='vm.form.city',
+          type='text',
+          name='city',
+          required)
+  //- ----------------------------------------------------------------------------------
+  .form-group(ng-class="{'has-error': stepTwo.range.$touched && stepTwo.range.$invalid}")
+    label.control-label Range test
+    input.form-control(ng-model='vm.form.range',
+          type='text',
+          name='range',
+          data-range='0-10'
+          required)
+    span.help-block enter a value between 0 and 10
+  //- ----------------------------------------------------------------------------------
+  .form-group
+    label.checkbox-inline(ng-repeat='checkbox in vm.checkboxes')
+      input(type='checkbox', ng-model='checkbox.value')
+      |{{checkbox.label}} --- value{{$index}}
+  //- ----------------------------------------------------------------------------------
+  .form-group
+    label.radio-inline(ng-repeat='radio in vm.radios')
+      input(type='radio', ng-model='vm.sex', name='sex', value='{{radio.value}}', required) 
+      |{{radio.label}}
+  //- ----------------------------------------------------------------------------------
+  .form-group
+    label
+      |<input ng-model='vm.form.terms' value='yes' type='radio' name='terms' required> I acept the  
+      a.terms-link(ng-click='vm.openModal()') Termns and Conditios
+    button.pull-right.btn.btn-primary(type='submit', ng-disabled='stepTwo.$invalid') Submit

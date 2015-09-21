@@ -1,0 +1,30 @@
+
+<form name="stepOne" ng-submit="vm.nextStep(stepOne.$valid)" novalidate="novalidate" class="form">
+  <alert ng-repeat="alert in vm.activeAlerts" type="{{alert.type}}" close="vm.dismissAlert($index)">{{alert.msg}}</alert>
+  <div ng-class="{'has-error': stepOne.name.$touched &amp;&amp; stepOne.name.$invalid}" class="form-group has-feedback">
+    <label class="control-label">Name</label>
+    <div class="input-group">
+      <div class="input-group-addon">Sr.</div>
+      <input ng-model="vm.form.name" type="text" name="name" required="required" class="form-control"/>
+    </div>
+  </div>
+  <div ng-class="{'has-error': stepOne.lastName.$touched &amp;&amp; stepOne.lastName.$invalid}" class="form-group has-feedback">
+    <label class="control-label">Last Name</label>
+    <input ng-model="vm.form.lastName" type="text" name="lastName" required="required" class="form-control"/>
+  </div>
+  <div ng-class="{'has-error': stepOne.mail.$touched &amp;&amp; stepOne.mail.$invalid}" class="form-group">
+    <label class="control-label">Mail {{stepOne.mail.$touched && stepOne.mail.$invalid}}</label>
+    <input ng-model="vm.form.mail" type="email" name="mail" tooltip-template="'app/views/templates/errorMessages/mail.html'" tooltip-class="tooltip-bg" tooltip-placement="right" tooltip-trigger="tooltipActivate" data-trigger-tooltip="stepOne.mail.$touched &amp;&amp; stepOne.mail.$invalid" required="required" class="form-control"/>
+  </div>
+  <div ng-class="{'has-error': stepOne.userName.$touched &amp;&amp; stepOne.userName.$invalid,'has-success': stepOne.userName.$touched &amp;&amp; stepOne.userName.$valid}" class="form-group has-feedback">
+    <label class="control-label">userName</label>
+    <input ng-model="vm.form.userName" type="text" name="userName" required="required" class="form-control"/><span ng-show="stepOne.userName.$touched &amp;&amp; stepOne.userName.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span><span ng-show="stepOne.userName.$valid &amp;&amp; stepOne.userName.$touched" class="glyphicon glyphicon-ok form-control-feedback"></span><span class="help-block">some help text here just for the shows</span>
+  </div>
+  <div ng-class="{'has-error': stepOne.pass.$touched &amp;&amp; stepOne.pass.$invalid , 'has-success': stepOne.pass.$touched &amp;&amp; stepOne.pass.$valid}" class="form-group has-feedback">
+    <label class="control-label">Password</label>
+    <input ng-model="vm.form.pass" type="password" name="pass" ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&amp;'])[^ ]{5,16}$/" required="required" ng-focus="vm.onFocus('pass')" ng-blur="vm.onBlur('pass')" class="form-control"/><span ng-show="stepOne.pass.$touched &amp;&amp; stepOne.pass.$invalid" class="glyphicon glyphicon-remove form-control-feedback"></span><span ng-show="stepOne.pass.$valid &amp;&amp; stepOne.pass.$touched" class="glyphicon glyphicon-ok form-control-feedback"></span><span ng-show="vm.focus.pass &amp;&amp; stepOne.pass.$invalid" class="help-block">Make sure your password is longer than 5 characters and has a number, a symbol (!@#$%^&') and a upercase leter</span>
+  </div>
+  <div class="form-group">
+    <button role="button" ng-disabled="stepOne.$invalid" class="pull-right btn btn-primary">Next Step</button>
+  </div>
+</form>

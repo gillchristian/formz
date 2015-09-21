@@ -3,12 +3,31 @@
 'use strict';
 	
 	angular.module('formApp.controllers', [])
-		.controller('FormController', [ '$modal', '$timeout',
-			function($modal, $timeout){
+		.controller('FormController', [ '$modal', '$timeout', '$state',
+			function($modal, $timeout, $state){
 
 				// --- view-model connection ---
 				var vm = this;
 
+				// just so I dont have to fill the form all the time
+				vm.form = {
+					name: 'some',
+					lastName: 'other',
+					userName: 'the_form',
+					pass: 'aA@11das'
+				};
+
+				    vm.tabData   = [
+				      {
+				        heading: 'Step One',
+				        route:   'form.stepone'
+				      },
+				      {
+				        heading: 'Step Two',
+				        route:   'form.steptwo',
+				        disabled: true
+				      }
+				    ];
 
 				// --- date handlers ---
 
@@ -108,6 +127,15 @@
 						label: 'woman'
 					}
 				];
+
+				// --- submit functions ---
+				vm.nextStep = function(isValid) {
+					if (isValid) {
+						vm.tabData[1].disabled = false;
+						$state.go('form.steptwo');
+					}
+				};
+
 			}])
 
 		// --- modal controller

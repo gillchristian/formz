@@ -1,15 +1,28 @@
 (function(){
 	'use strict';
 
-	angular.module('formApp', ['ngMessages', 'ui.bootstrap', 'ui.router', 'formApp.controllers', 'formApp.directives'] )
+	angular.module('formApp', ['ngMessages', 'ui.bootstrap', 'ui.router', 'ui.router.tabs', 'formApp.controllers', 'formApp.directives'] )
 
 	.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
         
         $urlRouterProvider.otherwise('/'), 
 
-        $stateProvider.state('home', {
+        $stateProvider
+        .state('form', {
             url: '/',
             templateUrl: 'app/views/home.html',
+            controller: 'FormController',
+            controllerAs: 'vm'
+        })
+        .state('form.stepone', {
+            url: '/stepone',
+            templateUrl: 'app/views/step1.html',
+            controller: 'FormController',
+            controllerAs: 'vm'
+        })
+        .state('form.steptwo', {
+            url: '/steptwo',
+            templateUrl: 'app/views/step2.html',
             controller: 'FormController',
             controllerAs: 'vm'
         });

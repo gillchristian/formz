@@ -8,13 +8,37 @@
 		        scope: {
 		        	triggerTooltip: '='
 		        },
-		        link: function (scope, elm, attrs, ctrl) {
+		        link: function (scope, element, attrs, ctrl) {
 
-		            elm.find('input').on('blur', function () {
+        			//console.log(angular.element(element[0]));
+
+		        	angular.element(element[0]).on('blur', function(e){
+		        		console.log('true?',scope.triggerTooltip);
+		        		if(scope.triggerTooltip) {
+	        				element[0].dispatchEvent(new Event('customEvent'));
+		        		}
+		        	});
+
+
+		        	element.find('input').on('tooltipActivate', function(e){
+	        			console.log('triggered');
+		        	});
+/*
+		            element.find('input').on('blur', function () {
 			        	if (scope.triggerTooltip){
-			                elm.find('input').triggerHandler('tooltipActivate');
+			                element.find('input').triggerHandler('tooltipActivate');
 			        	}
 		            });
+		            */
+		            /*scope.$on('blur', function(){
+		            	if(scope.triggerTooltip){
+		            		scope.$emit('tooltipActivate');
+		            	}
+		            });
+
+		            scope.$on('tooltipActivate', function(){
+		            	console.log('triggered');
+		            });*/
 		        }
 		    };
 	});

@@ -1,0 +1,42 @@
+
+<form name="stepTwo" ng-submit="vm.submitForm(stepTwo.$valid)" novalidate="novalidate" class="form">
+  <alert ng-repeat="alert in vm.activeAlerts" type="{{alert.type}}" close="vm.dismissAlert($index)">{{alert.msg}}</alert>
+  <div ng-class="{'has-error': stepTwo.date.$touched &amp;&amp; stepTwo.date.$invalid}" class="form-group">
+    <label class="control-label">Birthdate</label>
+    <input ng-model="vm.form.date" name="date" type="date" datepicker-popup="datepicker-popup" is-open="date.opened" min-date="date.min" max-date="date.max" date-disabled="disabled(date, mode)" close-text="Close" required="required" class="form-control"/>
+  </div>
+  <div ng-class="{'has-error': stepTwo.adress.$touched &amp;&amp; stepTwo.adress.$invalid}" class="form-group">
+    <label class="control-label">Street</label>
+    <input ng-model="vm.form.adress" type="text" name="adress" required="required" class="form-control"/>
+  </div>
+  <div ng-class="{'has-error': stepTwo.zip.$touched &amp;&amp; stepTwo.zip.$invalid}" class="form-group">
+    <label class="control-label">ZIP Code</label>
+    <input ng-model="vm.form.zip" type="text" name="zip" required="required" class="form-control"/>
+  </div>
+  <div class="form-group">
+    <label class="control-label">State</label>
+    <select ng-init="vm.form.state = vm.states[0]" ng-model="vm.form.state" ng-options="state for state in vm.states" required="required" class="form-control"></select>
+  </div>
+  <div ng-class="{'has-error': stepTwo.city.$touched &amp;&amp; stepTwo.city.$invalid}" class="form-group">
+    <label class="control-label">City</label>
+    <input ng-model="vm.form.city" type="text" name="city" required="required" class="form-control"/>
+  </div>
+  <div ng-class="{'has-error': stepTwo.range.$touched &amp;&amp; stepTwo.range.$invalid}" class="form-group">
+    <label class="control-label">Range test</label>
+    <input ng-model="vm.form.range" type="text" name="range" data-range="0-10" required="required" class="form-control"/><span class="help-block">enter a value between 0 and 10</span>
+  </div>
+  <div class="form-group">
+    <label ng-repeat="checkbox in vm.checkboxes" class="checkbox-inline">
+      <input type="checkbox" ng-model="checkbox.value"/>{{checkbox.label}} --- value{{$index}}
+    </label>
+  </div>
+  <div class="form-group">
+    <label ng-repeat="radio in vm.radios" class="radio-inline">
+      <input type="radio" ng-model="vm.sex" name="sex" value="{{radio.value}}" required="required"/>{{radio.label}}
+    </label>
+  </div>
+  <div class="form-group">
+    <label><input ng-model='vm.form.terms' value='yes' type='radio' name='terms' required> I acept the  <a ng-click="vm.openModal()" class="terms-link">Termns and Conditios</a></label>
+    <button type="submit" ng-disabled="stepTwo.$invalid" class="pull-right btn btn-primary">Submit</button>
+  </div>
+</form>

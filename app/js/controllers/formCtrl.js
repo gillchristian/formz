@@ -3,8 +3,8 @@
 'use strict';
 	
 	angular.module('formApp.controllers', [])
-		.controller('FormController', [ '$modal', '$timeout', '$state',
-			function($modal, $timeout, $state){
+		.controller('FormController', [ '$modal', '$timeout', '$state', '$http',
+			function($modal, $timeout, $state, $http){
 
 				// --- view-model connection ---
 				var vm = this;
@@ -17,17 +17,20 @@
 					pass: 'aA@11das'
 				};
 
-				    vm.tabData   = [
-				      {
-				        heading: 'Step One',
-				        route:   'form.stepone'
-				      },
-				      {
-				        heading: 'Step Two',
-				        route:   'form.steptwo',
-				        disabled: true
-				      }
-				    ];
+			    vm.tabData   = [
+			      {
+			        heading: 'Step One',
+			        route:   'form.stepone'
+			      },
+			      {
+			        heading: 'Step Two',
+			        route:   'form.steptwo'
+			      },
+			      {
+			        heading: 'Step Three',
+			        route:   'form.stepthree'
+			      }
+			    ];
 
 				// --- date handlers ---
 
@@ -40,15 +43,8 @@
 						'State E'
 				];
 
-				// --- focus / blur 'callbacks' ---
-				vm.focus = [];
-				vm.onBlur = function(field){
-					vm.focus[field] = false;
-				};
-
-				vm.onFocus = function(field){
-					vm.focus[field] = true;
-				};
+				// --- states ---
+				vm.cities = ['Buenos Aires','Bogotá','Bragado','Saint Louis','Santa Fe','San Fernando','San Luis','San Pedro','Santo Tomé','Santa Catalina','Saint Angels','Paso de los Libres','Paraná','Posadas'];
 
 				// --- modal open function ---
 				vm.openModal = function(){
@@ -87,6 +83,10 @@
 					mail : {
 						type: 'warning',
 						msg: 'Oh snap! Change a few things up and try submitting again.'
+					},
+					pass: {
+						type: 'warning',
+						msg: 'Make sure your password is longer than 5 characters and has a number, a symbol (!@#$%^&\') and a upercase leter'
 					}
 				};
 
@@ -98,7 +98,7 @@
 					vm.activeAlerts.push(alert);
 				};
 
-				vm.newAlert(vm.alerts.name);
+				//vm.newAlert(vm.alerts.name);
 
 				// --- checkboxes ---
 				vm.checkboxes = [
@@ -128,13 +128,20 @@
 					}
 				];
 
-				// --- submit functions ---
-				vm.nextStep = function(isValid) {
-					if (isValid) {
-						vm.tabData[1].disabled = false;
-						$state.go('form.steptwo');
-					}
-				};
+
+				  // Any function returning a promise object can be used to load values asynchronously
+				  vm.getLocation = function(val) {
+				    return $http.get('//maps.googleapis.com/maps/api/geocode/json', {
+				      params: {
+				        address: val,
+				        sensor: false
+				      }
+				    }).then(function(response){
+				      return response.data.results.map(function(item){
+				        return item.formatted_address;
+				      });
+				    });
+				  };
 
 			}])
 

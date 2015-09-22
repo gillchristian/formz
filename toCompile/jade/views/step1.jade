@@ -1,4 +1,4 @@
-form.form(name='stepOne', ng-submit='vm.nextStep(stepOne.$valid)', novalidate)
+form.form(name='stepOne', novalidate)
   //- ----------------------------------------------------------------------------------
   alert(ng-repeat='alert in vm.activeAlerts' type='{{alert.type}}' close='vm.dismissAlert($index)') {{alert.msg}}
   //- ----------------------------------------------------------------------------------
@@ -9,6 +9,7 @@ form.form(name='stepOne', ng-submit='vm.nextStep(stepOne.$valid)', novalidate)
       input.form-control(ng-model='vm.form.name',
             type='text',
             name='name',
+            ng-pattern='/^[a-zA-Z]{1,25}$/',
             required)
   //- ----------------------------------------------------------------------------------
   .form-group(ng-class="{'has-error': stepOne.lastName.$touched && stepOne.lastName.$invalid}").has-feedback
@@ -16,6 +17,7 @@ form.form(name='stepOne', ng-submit='vm.nextStep(stepOne.$valid)', novalidate)
     input.form-control(ng-model='vm.form.lastName',
           type='text',
           name='lastName',
+          ng-pattern='/^[a-zA-Z]{1,25}$/',
           required)
   //- ----------------------------------------------------------------------------------
   .form-group(ng-class="{'has-error': stepOne.mail.$touched && stepOne.mail.$invalid}")
@@ -31,13 +33,15 @@ form.form(name='stepOne', ng-submit='vm.nextStep(stepOne.$valid)', novalidate)
           required)
   //- ----------------------------------------------------------------------------------
   .form-group.has-feedback(ng-class="{'has-error': stepOne.userName.$touched && stepOne.userName.$invalid,'has-success': stepOne.userName.$touched && stepOne.userName.$valid}")
-    label.control-label userName
+    label.control-label username
     input.form-control(ng-model='vm.form.userName',
           type='text',
           name='userName',
+          username,
           required)
-    span.glyphicon.glyphicon-remove.form-control-feedback(ng-show='stepOne.userName.$touched && stepOne.userName.$invalid')
-    span.glyphicon.glyphicon-ok.form-control-feedback(ng-show='stepOne.userName.$valid && stepOne.userName.$touched')
+    span.glyphicon.glyphicon-remove.form-control-feedback(ng-show='stepOne.userName.$error.username')
+    span.glyphicon.glyphicon-refresh.spin.form-control-feedback(ng-show='stepOne.userName.$pending.username')
+    span.glyphicon.glyphicon-ok.form-control-feedback(ng-show='stepOne.userName.$valid')
     span.help-block some help text here just for the shows
   //- ----------------------------------------------------------------------------------
   .form-group.has-feedback(ng-class="{'has-error': stepOne.pass.$touched && stepOne.pass.$invalid , 'has-success': stepOne.pass.$touched && stepOne.pass.$valid}")
@@ -47,10 +51,11 @@ form.form(name='stepOne', ng-submit='vm.nextStep(stepOne.$valid)', novalidate)
           name='pass',
           ng-pattern="/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&'])[^ ]{5,16}$/",
           required,
-          ng-focus="vm.onFocus('pass')",
-          ng-blur="vm.onBlur('pass')")
+          ng-focus='vm.newAlert(vm.alerts.pass)')
     span.glyphicon.glyphicon-remove.form-control-feedback(ng-show='stepOne.pass.$touched && stepOne.pass.$invalid')
     span.glyphicon.glyphicon-ok.form-control-feedback(ng-show='stepOne.pass.$valid && stepOne.pass.$touched')
-    span.help-block(ng-show='vm.focus.pass && stepOne.pass.$invalid') Make sure your password is longer than 5 characters and has a number, a symbol (!@#$%^&') and a upercase leter
   .form-group
-    button.pull-right.btn.btn-primary(role='button', ng-disabled='stepOne.$invalid') Next Step
+    button.pull-right.btn.btn-primary(ng-disabled='stepOne.$invalid', ui-sref='form.steptwo') Next
+
+
+//-    span.help-block(ng-show='vm.focus.pass && stepOne.pass.$invalid') Make sure your password is longer than 5 characters and has a number, a symbol (!@#$%^&') and a upercase leter

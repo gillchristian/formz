@@ -1,0 +1,50 @@
+form.form(name='stepThree', ng-submit='vm.submitForm(stepThree.$valid)', novalidate)
+  //- ----------------------------------------------------------------------------------
+  alert(ng-repeat='alert in vm.activeAlerts' type='{{alert.type}}' close='vm.dismissAlert($index)') {{alert.msg}}
+  //- ----------------------------------------------------------------------------------
+  .form-group(ng-class="{'has-error': stepThree.range.$touched && stepThree.range.$invalid}")
+    label.control-label Range test
+    input.form-control(ng-model='vm.form.range',
+          type='text',
+          name='range',
+          data-range='0-10'
+          required)
+    span.help-block enter a value between 0 and 10
+  //- ----------------------------------------------------------------------------------
+  .form-group
+    label.control-label City
+    pre Selected: {{vm.form.cityTypehead | json}}
+    input.form-control(type='text',
+                      ng-model='vm.form.cityTypehead',
+                      typeahead='city for city in vm.cities | filter:$viewValue | limitTo: 8'
+      )
+  //- ----------------------------------------------------------------------------------
+  .form-group
+    label.control-label
+      |Asynchronous Results 
+      i.glyphicon.glyphicon-refresh.spin(ng-show="loadingTypeHead")
+      i.glyphicon.glyphicon-remove(ng-show="noResults")
+    pre Selected: {{vm.form.async | json}}
+    input.form-control(type='text',
+                      placeholder='Locations loaded via $http',
+                      ng-model='vm.form.async',
+                      typeahead='address for address in vm.getLocation($viewValue)',
+                      typeahead-loading="loadingTypeHead",
+                      typeahead-no-results="noResults"
+      )
+  //- ----------------------------------------------------------------------------------
+  .form-group
+    label.checkbox-inline(ng-repeat='checkbox in vm.checkboxes')
+      input(type='checkbox', ng-model='checkbox.value')
+      |{{checkbox.label}} --- value{{$index}}
+  //- ----------------------------------------------------------------------------------
+  .form-group
+    label.radio-inline(ng-repeat='radio in vm.radios')
+      input(type='radio', ng-model='vm.sex', name='sex', value='{{radio.value}}', required) 
+      |{{radio.label}}
+  //- ----------------------------------------------------------------------------------
+  .form-group
+    label
+      |<input ng-model='vm.form.terms' value='yes' type='radio' name='terms' required> I acept the  
+      a.terms-link(ng-click='vm.openModal()') Termns and Conditios
+    button.pull-right.btn.btn-primary(type='submit', ng-disabled='stepThree.$invalid') Submit

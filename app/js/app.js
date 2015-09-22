@@ -15,16 +15,16 @@
             controllerAs: 'vm'
         })
         .state('form.stepone', {
-            url: '/stepone',
-            templateUrl: 'app/views/step1.html',
-            controller: 'FormController',
-            controllerAs: 'vm'
+            url: 'stepone',
+            templateUrl: 'app/views/step1.html'
         })
         .state('form.steptwo', {
-            url: '/steptwo',
-            templateUrl: 'app/views/step2.html',
-            controller: 'FormController',
-            controllerAs: 'vm'
+            url: 'steptwo',
+            templateUrl: 'app/views/step2.html'
+        })
+        .state('form.stepthree', {
+            url: 'stepthree',
+            templateUrl: 'app/views/step3.html'
         });
 	
 		$locationProvider.html5Mode(true);

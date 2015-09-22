@@ -13,7 +13,7 @@
     pre.test Checkboxes {{vm.checkboxes}}
     pre.test sex {{vm.sex}}
   .main-col
-    tabs(data='vm.tabData', type='pills')
+    tabs(data='vm.tabData', type='pills', justified='true')
     ui-view(autoscroll)
   .secondary
 include ../includes/modal
@@ -32,7 +32,7 @@ include ../includes/modal
 //-     pre.test Checkboxes {{vm.checkboxes}}
 //-     pre.test sex {{vm.sex}}
 //-   .main-col
-//-     tabset(justifi  ed='true')
+//-     tabset(justified='true')
 //-       tab(heading='Step 1')
 //-         include ../includes/step1
 //-       tab(heading='Step 2', disabled='stepOne.$invalid')

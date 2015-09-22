@@ -22,6 +22,13 @@ form.form(name='stepTwo', ng-submit='vm.nextStep(stepTwo.$valid, 2)', novalidate
           name='adress'
           required)
   //- ----------------------------------------------------------------------------------
+  .form-group(ng-class="{'has-error': stepTwo.city.$touched && stepTwo.city.$invalid}")
+    label.control-label City
+    input.form-control(ng-model='vm.form.city',
+          type='text',
+          name='city',
+          required)
+  //- ----------------------------------------------------------------------------------
   .form-group(ng-class="{'has-error': stepTwo.zip.$touched && stepTwo.zip.$invalid}")
     label.control-label ZIP Code
     input.form-control(ng-model='vm.form.zip',
@@ -36,12 +43,13 @@ form.form(name='stepTwo', ng-submit='vm.nextStep(stepTwo.$valid, 2)', novalidate
                         ng-options='state for state in vm.states',
                         required)
   //- ----------------------------------------------------------------------------------
-  .form-group(ng-class="{'has-error': stepTwo.city.$touched && stepTwo.city.$invalid}")
-    label.control-label City
-    input.form-control(ng-model='vm.form.city',
-          type='text',
-          name='city',
-          required)
+  .form-group
+    label.control-label Multi State
+    select.form-control(multiple
+                        ng-model='vm.form.stateMulti', 
+                        ng-options='state for state in vm.states',
+                        required)
+    span.help-block select multiple options by pressing ctrl
   //- ----------------------------------------------------------------------------------
   .form-group
     button.pull-right.btn.btn-primary(ng-disabled='stepTwo.$invalid', ui-sref='form.stepthree') Next

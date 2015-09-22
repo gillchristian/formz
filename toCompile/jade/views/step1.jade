@@ -32,7 +32,7 @@ form.form(name='stepOne', novalidate)
           data-trigger-tooltip='stepOne.mail.$touched && stepOne.mail.$invalid',
           required)
   //- ----------------------------------------------------------------------------------
-  .form-group.has-feedback(ng-class="{'has-error': stepOne.userName.$touched && stepOne.userName.$invalid,'has-success': stepOne.userName.$touched && stepOne.userName.$valid}")
+  .form-group.has-feedback(ng-class="{'has-error': stepOne.userName.$invalid && stepOne.userName.$dirty,'has-success': stepOne.userName.$valid}")
     label.control-label username
     input.form-control(ng-model='vm.form.userName',
           type='text',
@@ -42,7 +42,7 @@ form.form(name='stepOne', novalidate)
     span.glyphicon.glyphicon-remove.form-control-feedback(ng-show='stepOne.userName.$error.username')
     span.glyphicon.glyphicon-refresh.spin.form-control-feedback(ng-show='stepOne.userName.$pending.username')
     span.glyphicon.glyphicon-ok.form-control-feedback(ng-show='stepOne.userName.$valid')
-    span.help-block some help text here just for the shows
+    span.help-block some help text here just for the shows, try with: 'Pablo', 'Lucas', 'Matias', 'asdf'.
   //- ----------------------------------------------------------------------------------
   .form-group.has-feedback(ng-class="{'has-error': stepOne.pass.$touched && stepOne.pass.$invalid , 'has-success': stepOne.pass.$touched && stepOne.pass.$valid}")
     label.control-label Password

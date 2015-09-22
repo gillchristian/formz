@@ -2,18 +2,11 @@
 <div class="container-fluid box">
   <div class="secondary">
     <h1 class="h3 center-text">Test</h1>
-    <pre class="test"> 
-Form data: <br>
-{{vm.form}}</pre>
-    <pre class="test">Password valid? {{testForm.pass.$valid}}</pre>
-    <pre class="test">Range valid? {{testForm.range.$valid}}</pre>
-    <pre class="test">Mail valid? {{testForm.mail.$valid}}</pre>
-    <pre class="test">Alerts? {{vm.activeAlerts}}</pre>
-    <pre class="test">Checkboxes {{vm.checkboxes}}</pre>
-    <pre class="test">sex {{vm.sex}}</pre>
+    <pre class="test">Form data:</pre>
+    <pre ng-repeat="field in vm.form" class="test">{{field | json}}</pre>
   </div>
   <div class="main-col">
-    <tabs data="vm.tabData" type="pills" justified="true"></tabs>
+    <tabs data="vm.tabData" type="tabs" justified="true"></tabs>
     <ui-view autoscroll="autoscroll"></ui-view>
   </div>
   <div class="secondary"></div>

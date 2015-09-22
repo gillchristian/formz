@@ -3,7 +3,7 @@ angular.module('formApp.directives')
   return {
       require: 'ngModel',
       link: function(scope, elm, attrs, ctrl) {
-         var usernames = ['Pablo', 'Matias', 'asdf'];
+         var usernames = ['Pablo', 'Matias','Lucas', 'asdf'];
 
          ctrl.$asyncValidators.username = function(modelValue, viewValue) {
 

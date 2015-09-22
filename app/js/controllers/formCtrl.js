@@ -9,13 +9,13 @@
 				// --- view-model connection ---
 				var vm = this;
 
-				// just so I dont have to fill the form all the time
-				vm.form = {
-					name: 'some',
-					lastName: 'other',
-					userName: 'the_form',
-					pass: 'aA@11das'
-				};
+				// // just so I dont have to fill the form all the time
+				// vm.form = {
+				// 	name: 'some',
+				// 	lastName: 'other',
+				// 	userName: 'the_form',
+				// 	pass: 'aA@11das'
+				// };
 
 			    vm.tabData   = [
 			      {

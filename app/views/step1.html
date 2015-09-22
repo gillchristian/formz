@@ -16,9 +16,9 @@
     <label class="control-label">Mail {{stepOne.mail.$touched && stepOne.mail.$invalid}}</label>
     <input ng-model="vm.form.mail" type="email" name="mail" tooltip-template="'app/views/templates/errorMessages/mail.html'" tooltip-class="tooltip-bg" tooltip-placement="right" tooltip-trigger="tooltipActivate" data-trigger-tooltip="stepOne.mail.$touched &amp;&amp; stepOne.mail.$invalid" required="required" class="form-control"/>
   </div>
-  <div ng-class="{'has-error': stepOne.userName.$touched &amp;&amp; stepOne.userName.$invalid,'has-success': stepOne.userName.$touched &amp;&amp; stepOne.userName.$valid}" class="form-group has-feedback">
+  <div ng-class="{'has-error': stepOne.userName.$invalid &amp;&amp; stepOne.userName.$dirty,'has-success': stepOne.userName.$valid}" class="form-group has-feedback">
     <label class="control-label">username</label>
-    <input ng-model="vm.form.userName" type="text" name="userName" username="username" required="required" class="form-control"/><span ng-show="stepOne.userName.$error.username" class="glyphicon glyphicon-remove form-control-feedback"></span><span ng-show="stepOne.userName.$pending.username" class="glyphicon glyphicon-refresh spin form-control-feedback"></span><span ng-show="stepOne.userName.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span><span class="help-block">some help text here just for the shows</span>
+    <input ng-model="vm.form.userName" type="text" name="userName" username="username" required="required" class="form-control"/><span ng-show="stepOne.userName.$error.username" class="glyphicon glyphicon-remove form-control-feedback"></span><span ng-show="stepOne.userName.$pending.username" class="glyphicon glyphicon-refresh spin form-control-feedback"></span><span ng-show="stepOne.userName.$valid" class="glyphicon glyphicon-ok form-control-feedback"></span><span class="help-block">some help text here just for the shows, try with: 'Pablo', 'Lucas', 'Matias', 'asdf'.</span>
   </div>
   <div ng-class="{'has-error': stepOne.pass.$touched &amp;&amp; stepOne.pass.$invalid , 'has-success': stepOne.pass.$touched &amp;&amp; stepOne.pass.$valid}" class="form-group has-feedback">
     <label class="control-label">Password</label>

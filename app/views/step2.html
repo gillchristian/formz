@@ -9,6 +9,10 @@
     <label class="control-label">Street</label>
     <input ng-model="vm.form.adress" type="text" name="adress" required="required" class="form-control"/>
   </div>
+  <div ng-class="{'has-error': stepTwo.city.$touched &amp;&amp; stepTwo.city.$invalid}" class="form-group">
+    <label class="control-label">City</label>
+    <input ng-model="vm.form.city" type="text" name="city" required="required" class="form-control"/>
+  </div>
   <div ng-class="{'has-error': stepTwo.zip.$touched &amp;&amp; stepTwo.zip.$invalid}" class="form-group">
     <label class="control-label">ZIP Code</label>
     <input ng-model="vm.form.zip" type="text" name="zip" required="required" class="form-control"/>
@@ -17,9 +21,9 @@
     <label class="control-label">State</label>
     <select ng-init="vm.form.state = vm.states[0]" ng-model="vm.form.state" ng-options="state for state in vm.states" required="required" class="form-control"></select>
   </div>
-  <div ng-class="{'has-error': stepTwo.city.$touched &amp;&amp; stepTwo.city.$invalid}" class="form-group">
-    <label class="control-label">City</label>
-    <input ng-model="vm.form.city" type="text" name="city" required="required" class="form-control"/>
+  <div class="form-group">
+    <label class="control-label">Multi State</label>
+    <select multiple="multiple" ng-model="vm.form.stateMulti" ng-options="state for state in vm.states" required="required" class="form-control"></select><span class="help-block">select multiple options by pressing ctrl</span>
   </div>
   <div class="form-group">
     <button ng-disabled="stepTwo.$invalid" ui-sref="form.stepthree" class="pull-right btn btn-primary">Next</button>

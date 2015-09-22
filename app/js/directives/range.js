@@ -9,6 +9,7 @@
                 ctrl.$validators.range = function(modelValue, viewValue) {
                     if (ctrl.$isEmpty(modelValue)) return true;
                     var values = attrs.range.split('-');
+                    console.log(values);
                     var min = parseInt(values[0]) < parseInt(viewValue);
                     var max = parseInt(values[1]) > parseInt(viewValue);
                     return min && max ? true : false;

@@ -3,17 +3,10 @@
   .secondary
     //- showing the view model data
     h1.h3.center-text Test
-    pre.test 
-      |Form data: <br>
-      |{{vm.form}}
-    pre.test Password valid? {{testForm.pass.$valid}}
-    pre.test Range valid? {{testForm.range.$valid}}
-    pre.test Mail valid? {{testForm.mail.$valid}}
-    pre.test Alerts? {{vm.activeAlerts}}
-    pre.test Checkboxes {{vm.checkboxes}}
-    pre.test sex {{vm.sex}}
+    pre.test Form data:
+    pre.test(ng-repeat='field in vm.form') {{field | json}}
   .main-col
-    tabs(data='vm.tabData', type='pills', justified='true')
+    tabs(data='vm.tabData', type='tabs', justified='true')
     ui-view(autoscroll)
   .secondary
 include ../includes/modal

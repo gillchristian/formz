@@ -48,6 +48,16 @@
 .tooltip.right .tooltip-arrow {
 	border-right-color: rgba(169,68,66, 0.9);
 }
+.full button span {
+	background-color: limegreen;
+	border-radius: 32px;
+	color: black;
+}
+.partially button span {
+	background-color: orange;
+	border-radius: 32px;
+	color: black;
+}
 
 
 /* --- text handling --- */

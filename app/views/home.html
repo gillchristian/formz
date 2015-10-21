@@ -6,8 +6,15 @@
     <pre ng-repeat="field in vm.form" class="test">{{field | json}}</pre>
   </div>
   <div class="main-col">
-    <tabs data="vm.tabData" type="tabs" justified="true"></tabs>
-    <ui-view autoscroll="autoscroll"></ui-view>
+    <div ng-hide="vm.show()" class="box steps-bar">
+      <button ui-sref-active="btn-success" ui-sref="form.stepone" class="btn">step one </button>
+      <button ui-sref-active="btn-success" ui-sref="form.steptwo" class="btn">step two</button>
+      <button ui-sref-active="btn-success" ui-sref="form.stepthree" class="btn">step three </button>
+    </div>
+    <div ng-show="vm.show()" class="steps-bar">
+      <div ui-sref="form.stepone" class="button btn btn-warning">Fill form   <i class="glyphicon glyphicon-arrow-right"></i></div>
+    </div>
+    <ui-view></ui-view>
   </div>
   <div class="secondary"></div>
 </div>

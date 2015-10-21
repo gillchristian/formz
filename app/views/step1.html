@@ -1,19 +1,10 @@
 
 <form name="stepOne" novalidate="novalidate" class="form">
   <alert ng-repeat="alert in vm.activeAlerts" type="{{alert.type}}" close="vm.dismissAlert($index)">{{alert.msg}}</alert>
-  <div ng-class="{'has-error': stepOne.name.$touched &amp;&amp; stepOne.name.$invalid}" class="form-group has-feedback">
-    <label class="control-label">Name</label>
-    <div class="input-group">
-      <div class="input-group-addon">Sr.</div>
-      <input ng-model="vm.form.name" type="text" name="name" ng-pattern="/^[a-zA-Z]{1,25}$/" required="required" class="form-control"/>
-    </div>
-  </div>
-  <div ng-class="{'has-error': stepOne.lastName.$touched &amp;&amp; stepOne.lastName.$invalid}" class="form-group has-feedback">
-    <label class="control-label">Last Name</label>
-    <input ng-model="vm.form.lastName" type="text" name="lastName" ng-pattern="/^[a-zA-Z]{1,25}$/" required="required" class="form-control"/>
-  </div>
+  <data-text-field f-model="vm.form.name" f-label="Name" f-name="name" f-required="false" f-pattern="^[a-zA-Z]{1,25}$" f-left-addon="Sr."></data-text-field>
+  <data-text-field f-model="vm.form.lastName" f-label="Last Name" f-name="lastName" f-required="true" f-pattern="^[a-zA-Z]{1,25}$"></data-text-field>
   <div ng-class="{'has-error': stepOne.mail.$touched &amp;&amp; stepOne.mail.$invalid}" class="form-group">
-    <label class="control-label">Mail {{stepOne.mail.$touched && stepOne.mail.$invalid}}</label>
+    <label class="control-label">Mail</label>
     <input ng-model="vm.form.mail" type="email" name="mail" tooltip-template="'app/views/templates/errorMessages/mail.html'" tooltip-class="tooltip-bg" tooltip-placement="right" tooltip-trigger="tooltipActivate" data-trigger-tooltip="stepOne.mail.$touched &amp;&amp; stepOne.mail.$invalid" required="required" class="form-control"/>
   </div>
   <div ng-class="{'has-error': stepOne.userName.$invalid &amp;&amp; stepOne.userName.$dirty,'has-success': stepOne.userName.$valid}" class="form-group has-feedback">

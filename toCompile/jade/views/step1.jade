@@ -2,26 +2,21 @@ form.form(name='stepOne', novalidate)
   //- ----------------------------------------------------------------------------------
   alert(ng-repeat='alert in vm.activeAlerts' type='{{alert.type}}' close='vm.dismissAlert($index)') {{alert.msg}}
   //- ----------------------------------------------------------------------------------
-  .form-group(ng-class="{'has-error': stepOne.name.$touched && stepOne.name.$invalid}").has-feedback
-    label.control-label Name
-    .input-group
-      .input-group-addon Sr.
-      input.form-control(ng-model='vm.form.name',
-            type='text',
-            name='name',
-            ng-pattern='/^[a-zA-Z]{1,25}$/',
-            required)
+  data-text-field(f-model='vm.form.name', 
+      f-label='Name', 
+      f-name='name', 
+      f-required='false', 
+      f-pattern='^[a-zA-Z]{1,25}$',
+      f-left-addon='Sr.')
   //- ----------------------------------------------------------------------------------
-  .form-group(ng-class="{'has-error': stepOne.lastName.$touched && stepOne.lastName.$invalid}").has-feedback
-    label.control-label Last Name
-    input.form-control(ng-model='vm.form.lastName',
-          type='text',
-          name='lastName',
-          ng-pattern='/^[a-zA-Z]{1,25}$/',
-          required)
+  data-text-field(f-model='vm.form.lastName', 
+      f-label='Last Name', 
+      f-name='lastName', 
+      f-required='true', 
+      f-pattern='^[a-zA-Z]{1,25}$')
   //- ----------------------------------------------------------------------------------
   .form-group(ng-class="{'has-error': stepOne.mail.$touched && stepOne.mail.$invalid}")
-    label.control-label Mail {{stepOne.mail.$touched && stepOne.mail.$invalid}}
+    label.control-label Mail
     input.form-control(ng-model='vm.form.mail',
           type='email',
           name='mail',
@@ -56,6 +51,3 @@ form.form(name='stepOne', novalidate)
     span.glyphicon.glyphicon-ok.form-control-feedback(ng-show='stepOne.pass.$valid && stepOne.pass.$touched')
   .form-group
     button.pull-right.btn.btn-primary(ng-disabled='stepOne.$invalid', ui-sref='form.steptwo') Next
-
-
-//-    span.help-block(ng-show='vm.focus.pass && stepOne.pass.$invalid') Make sure your password is longer than 5 characters and has a number, a symbol (!@#$%^&') and a upercase leter

@@ -1,32 +1,37 @@
-angular.module('formApp.directives')
-  .directive('username', function($q, $timeout) {
-  return {
-      require: 'ngModel',
-      link: function(scope, elm, attrs, ctrl) {
-         var usernames = ['Pablo', 'Matias','Lucas', 'asdf'];
+(function(){
+  'use strict';
 
-         ctrl.$asyncValidators.username = function(modelValue, viewValue) {
+  angular.module('formApp.directives')
+    .directive('username', function($q, $timeout) {
+      return {
+          require: 'ngModel',
+          link: function(scope, elm, attrs, ctrl) {
+             var usernames = ['Pablo', 'Matias','Lucas', 'asdf'];
 
-         if (ctrl.$isEmpty(modelValue)) {
-            // consider empty model valid
-            return $q.when();
-         }
+             ctrl.$asyncValidators.username = function(modelValue, viewValue) {
 
-        var def = $q.defer();
+             if (ctrl.$isEmpty(modelValue)) {
+                // consider empty model valid
+                return $q.when();
+             }
 
-         $timeout(function() {
-            // Mock a delayed response
-            if (usernames.indexOf(modelValue) === -1) {
-               // The username is available
-               def.resolve();
-            } else {
-               def.reject();
-            }
+            var def = $q.defer();
 
-         }, 2000);
+             $timeout(function() {
+                // Mock a delayed response
+                if (usernames.indexOf(modelValue) === -1) {
+                   // The username is available
+                   def.resolve();
+                } else {
+                   def.reject();
+                }
 
-         return def.promise;
+             }, 2000);
+
+             return def.promise;
+          };
+        }
       };
-    }
-  };
 });
+
+})();

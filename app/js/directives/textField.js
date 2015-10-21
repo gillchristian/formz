@@ -25,7 +25,11 @@ angular.module('formApp.directives')
 					// define the input type
 					scope.type = scope.type || 'text';
 					// make fields not required by default
-					scope.req = scope.req || false;
+					scope.isReq = scope.req || false ;
+					console.log('fRequired' in attrs);
+					console.log('recibido' ,scope.req);
+					console.log('recibido || false', scope.isReq);
+					console.log('----------------------------------');
 					// add addons
 					scope.addLeftAddon = scope.leftAddon ? true : false;
 					scope.addRightAddon = scope.rightAddon ? true : false;				

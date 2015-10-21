@@ -3,17 +3,28 @@ form.form(name='stepOne', novalidate)
   alert(ng-repeat='alert in vm.activeAlerts' type='{{alert.type}}' close='vm.dismissAlert($index)') {{alert.msg}}
   //- ----------------------------------------------------------------------------------
   data-text-field(f-model='vm.form.name', 
-      f-label='Name', 
+      f-label='none', 
       f-name='name', 
-      f-required='false', 
       f-pattern='^[a-zA-Z]{1,25}$',
       f-left-addon='Sr.')
   //- ----------------------------------------------------------------------------------
   data-text-field(f-model='vm.form.lastName', 
-      f-label='Last Name', 
+      f-label='empty', 
       f-name='lastName', 
-      f-required='true', 
-      f-pattern='^[a-zA-Z]{1,25}$')
+      f-pattern='^[a-zA-Z]{1,25}$',
+      f-required)
+      
+  data-text-field(f-model='vm.form.lastName', 
+      f-label='=true', 
+      f-name='lastName', 
+      f-pattern='^[a-zA-Z]{1,25}$',
+      f-required='true')
+
+  data-text-field(f-model='vm.form.lastName', 
+      f-label='vm.value=false', 
+      f-name='lastName', 
+      f-pattern='^[a-zA-Z]{1,25}$',
+      f-required='vm.value')
   //- ----------------------------------------------------------------------------------
   .form-group(ng-class="{'has-error': stepOne.mail.$touched && stepOne.mail.$invalid}")
     label.control-label Mail

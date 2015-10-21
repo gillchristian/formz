@@ -4,5 +4,5 @@
   input.form-control(ng-model='model', type='{{type}}', name='{{name}}', ng-required='req', ng-if='!addLeftAddon && !addRightAddon')
   .input-group(ng-if='addLeftAddon || addRightAddon')
     .input-group-addon(ng-if='addLeftAddon') {{leftAddon}}
-    input.form-control(ng-model='model', type='{{type}}', name='{{name}}', ng-required='req')
+    input.form-control(ng-model='model', type='{{type}}', name='{{name}}', ng-required='isReq')
     .input-group-addon(ng-if='addRightAddon') {{rightAddon}}

@@ -4,7 +4,7 @@
   <input ng-model="model" type="{{type}}" name="{{name}}" ng-required="req" ng-if="!addLeftAddon &amp;&amp; !addRightAddon" class="form-control"/>
   <div ng-if="addLeftAddon || addRightAddon" class="input-group">
     <div ng-if="addLeftAddon" class="input-group-addon">{{leftAddon}}</div>
-    <input ng-model="model" type="{{type}}" name="{{name}}" ng-required="req" class="form-control"/>
+    <input ng-model="model" type="{{type}}" name="{{name}}" ng-required="isReq" class="form-control"/>
     <div ng-if="addRightAddon" class="input-group-addon">{{rightAddon}}</div>
   </div>
 </div>

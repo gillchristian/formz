@@ -11,6 +11,8 @@
 				// --- view-model connection ---
 				var vm = this;
 				// --- date handlers ---
+				
+				vm.value = false;
 
 				// --- fetch states & cities data ---
 				FormData.states.then(function(data){

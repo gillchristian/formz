@@ -1,10 +1,10 @@
 
 <div ng-class="{'has-error': form.{{name}}.$touched &amp;&amp; form.{{name}}.$invalid}" class="form-group">
   <label class="control-label">{{label}}</label>
-  <input ng-model="model" type="{{type}}" name="{{name}}" ng-required="isReq" ng-if="!addLeftAddon &amp;&amp; !addRightAddon" class="form-control"/>
+  <input ng-model="model" type="{{type}}" name="{{name}}" ng-required="isReq" ng-disabled="isDis" ng-if="!addLeftAddon &amp;&amp; !addRightAddon" class="form-control"/>
   <div ng-if="addLeftAddon || addRightAddon" class="input-group">
     <div ng-if="addLeftAddon" class="input-group-addon">{{leftAddon}}</div>
-    <input ng-model="model" type="{{type}}" name="{{name}}" ng-required="isReq" class="form-control"/>
+    <input ng-model="model" type="{{type}}" name="{{name}}" ng-required="isReq" ng-disabled="isDis" class="form-control"/>
     <div ng-if="addRightAddon" class="input-group-addon">{{rightAddon}}</div>
   </div>
 </div>

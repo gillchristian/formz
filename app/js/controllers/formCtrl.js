@@ -12,8 +12,12 @@
 				var vm = this;
 				// --- date handlers ---
 				
-				vm.value = true;
-
+				vm.value = false;
+				
+				vm.disable = function(){
+					vm.value = !vm.value;
+					return vm.value;
+				}
 				// --- fetch states & cities data ---
 				FormData.states.then(function(data){
 					vm.states = data;

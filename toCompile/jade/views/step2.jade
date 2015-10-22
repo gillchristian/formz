@@ -18,17 +18,17 @@ form.form(name='stepTwo', ng-submit='vm.nextStep(stepTwo.$valid, 2)', novalidate
   data-text-field(f-model='vm.form.adress', 
       f-label='Street', 
       f-name='adress', 
-      f-required)
+      f-required='')
   //- ----------------------------------------------------------------------------------
   data-text-field(f-model='vm.form.city', 
       f-label='City', 
       f-name='city', 
-      f-required)
+      f-required='')
   //- ----------------------------------------------------------------------------------
   data-text-field(f-model='vm.form.zip', 
       f-label='ZIP Code', 
       f-name='zip',
-      f-required)
+      f-required='')
   //- ----------------------------------------------------------------------------------
   .form-group
     label.control-label State

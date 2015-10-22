@@ -4,6 +4,7 @@
     //- showing the view model data
     h1.h3.center-text Test
     pre.test Form data:
+    pre.test {{vm.form | json}}
     pre.test(ng-repeat='field in vm.form') {{field | json}}
   .main-col
     .box.steps-bar(ng-hide='vm.show()')

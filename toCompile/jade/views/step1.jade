@@ -3,17 +3,17 @@ form.form(name='stepOne', novalidate)
   alert(ng-repeat='alert in vm.activeAlerts' type='{{alert.type}}' close='vm.dismissAlert($index)') {{alert.msg}}
   //- ----------------------------------------------------------------------------------
   data-text-field(f-model='vm.form.name', 
-      f-label='none', 
+      f-label='Name', 
       f-name='name', 
       f-pattern='^[a-zA-Z]{1,25}$',
       f-left-addon='Sr.',
-      f-required)
+      f-required='')
   //- ----------------------------------------------------------------------------------
   data-text-field(f-model='vm.form.lastName', 
       f-label='Last Name', 
       f-name='lastName', 
       f-pattern='^[a-zA-Z]{1,25}$',
-      f-required)
+      f-required='')
   //- ----------------------------------------------------------------------------------
   .form-group(ng-class="{'has-error': stepOne.mail.$touched && stepOne.mail.$invalid}")
     label.control-label Mail

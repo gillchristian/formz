@@ -1,7 +1,7 @@
 (function(){
 	'use strict';
 
-	angular.module('formApp', ['ngMessages', 'ui.bootstrap', 'ui.router', 'ui.router.tabs', 'formApp.controllers', 'formApp.directives', 'formApp.services'] )
+	angular.module('formApp', ['ngMessages', 'ui.bootstrap', 'ui.router', 'ui.router.tabs', 'formApp.controllers', 'formApp.directives', 'formApp.services', 'formz'] )
 
 	.config(function($stateProvider, $urlRouterProvider, $locationProvider) {
         

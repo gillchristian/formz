@@ -5,9 +5,9 @@
     <label class="control-label">Birthdate</label>
     <input ng-model="vm.form.date" name="date" type="date" datepicker-popup="datepicker-popup" is-open="date.opened" min-date="date.min" max-date="date.max" date-disabled="disabled(date, mode)" close-text="Close" required="required" class="form-control"/>
   </div>
-  <data-text-field f-model="vm.form.adress" f-label="Street" f-name="adress" f-required="f-required"></data-text-field>
-  <data-text-field f-model="vm.form.city" f-label="City" f-name="city" f-required="f-required"></data-text-field>
-  <data-text-field f-model="vm.form.zip" f-label="ZIP Code" f-name="zip" f-required="f-required"></data-text-field>
+  <data-text-field f-model="vm.form.adress" f-label="Street" f-name="adress" f-required=""></data-text-field>
+  <data-text-field f-model="vm.form.city" f-label="City" f-name="city" f-required=""></data-text-field>
+  <data-text-field f-model="vm.form.zip" f-label="ZIP Code" f-name="zip" f-required=""></data-text-field>
   <div class="form-group">
     <label class="control-label">State</label>
     <select ng-init="vm.form.state = vm.states[0]" ng-model="vm.form.state" ng-options="state for state in vm.states" required="required" class="form-control"></select>

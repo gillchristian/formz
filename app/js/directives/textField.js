@@ -25,17 +25,15 @@ angular.module('formApp.directives')
 					// define the input type
 					scope.type = scope.type || 'text';
 					// make fields not required by default
-					scope.isReq = scope.req || false ;
-					console.log('fRequired' in attrs);
-					console.log('recibido' ,scope.req);
-					console.log('recibido || false', scope.isReq);
-					console.log('----------------------------------');
+					scope.isReq = scope.req !== undefined ? (scope.req === 0 ? true : scope.req) : false;
+					
+					console.log(scope.label ,scope.isReq);
 					// add addons
 					scope.addLeftAddon = scope.leftAddon ? true : false;
 					scope.addRightAddon = scope.rightAddon ? true : false;				
 					// add ng-pattern to the input
-						var input = elem.find('input').attr('ng-pattern', new RegExp(scope.pattern));
 					if(scope.pattern) {
+						var input = elem.find('input').attr('ng-pattern', new RegExp(scope.pattern));
 						$compile( input )(scope);
 					}
 				}

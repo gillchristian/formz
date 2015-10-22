@@ -12,7 +12,7 @@
 				var vm = this;
 				// --- date handlers ---
 				
-				vm.value = false;
+				vm.value = true;
 
 				// --- fetch states & cities data ---
 				FormData.states.then(function(data){

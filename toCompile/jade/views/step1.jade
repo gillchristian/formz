@@ -6,25 +6,14 @@ form.form(name='stepOne', novalidate)
       f-label='none', 
       f-name='name', 
       f-pattern='^[a-zA-Z]{1,25}$',
-      f-left-addon='Sr.')
+      f-left-addon='Sr.',
+      f-required)
   //- ----------------------------------------------------------------------------------
   data-text-field(f-model='vm.form.lastName', 
-      f-label='empty', 
+      f-label='Last Name', 
       f-name='lastName', 
       f-pattern='^[a-zA-Z]{1,25}$',
       f-required)
-      
-  data-text-field(f-model='vm.form.lastName', 
-      f-label='=true', 
-      f-name='lastName', 
-      f-pattern='^[a-zA-Z]{1,25}$',
-      f-required='true')
-
-  data-text-field(f-model='vm.form.lastName', 
-      f-label='vm.value=false', 
-      f-name='lastName', 
-      f-pattern='^[a-zA-Z]{1,25}$',
-      f-required='vm.value')
   //- ----------------------------------------------------------------------------------
   .form-group(ng-class="{'has-error': stepOne.mail.$touched && stepOne.mail.$invalid}")
     label.control-label Mail

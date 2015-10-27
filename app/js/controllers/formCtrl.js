@@ -12,7 +12,7 @@
 				var vm = this;
 				// --- date handlers ---
 				
-				vm.value = false;
+				vm.value = true;
 				
 				vm.disable = function(){
 					vm.value = !vm.value;

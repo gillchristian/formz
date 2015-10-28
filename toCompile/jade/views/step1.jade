@@ -7,14 +7,15 @@ form.form(name='stepOne', novalidate)
       f-label='Name', 
       f-name='name', 
       f-pattern='^[a-zA-Z]{1,25}$',
-      f-required='')
+      f-disabled='stepOne.mail.$invalid')
   //- ----------------------------------------------------------------------------------
   data-text-field(f-model='vm.form.lastName',
       f-type='text', 
       f-label='Last Name', 
       f-name='lastName', 
       f-pattern='^[a-zA-Z]{1,25}$',
-      f-required='')
+      f-required='',
+      f-placeholder='sarasa')
   //- ----------------------------------------------------------------------------------
   .form-group(ng-class="{'has-error': stepOne.mail.$touched && stepOne.mail.$invalid}")
     label.control-label Mail

@@ -2,6 +2,7 @@
 @import 'mixins';
 @import 'layout';
 @import 'form';
+@import 'date-picker';
 
 
 /* --- text handling --- */

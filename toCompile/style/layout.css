@@ -1,6 +1,6 @@
 .box {
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 }
 
 .secondary {
@@ -17,4 +17,9 @@
 .test {
 	margin: 10px auto;
 	width: 90%;
+}
+
+.steps-bar {
+	padding: 5px;
+	margin-top: 10px;
 }

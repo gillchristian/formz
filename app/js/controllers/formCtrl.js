@@ -1,50 +1,31 @@
+/* global stepOne */
+/* global stepThree */
 (function(){
 
 'use strict';
 	
 	angular.module('formApp.controllers', [])
-		.controller('FormController', [ '$modal', '$timeout', '$state', '$http',
-			function($modal, $timeout, $state, $http){
+		.controller('FormController', ['$scope', '$modal', '$timeout', '$state', '$http', 'FormData',
+			function($scope, $modal, $timeout, $state, $http, FormData){
 
 				// --- view-model connection ---
 				var vm = this;
-
-				// // just so I dont have to fill the form all the time
-				// vm.form = {
-				// 	name: 'some',
-				// 	lastName: 'other',
-				// 	userName: 'the_form',
-				// 	pass: 'aA@11das'
-				// };
-
-			    vm.tabData   = [
-			      {
-			        heading: 'Step One',
-			        route:   'form.stepone'
-			      },
-			      {
-			        heading: 'Step Two',
-			        route:   'form.steptwo'
-			      },
-			      {
-			        heading: 'Step Three',
-			        route:   'form.stepthree'
-			      }
-			    ];
-
 				// --- date handlers ---
+				
+				vm.value = true;
+				
+				vm.disable = function(){
+					vm.value = !vm.value;
+					return vm.value;
+				}
+				// --- fetch states & cities data ---
+				FormData.states.then(function(data){
+					vm.states = data;
+				});
+				FormData.cities.then(function(data){
+					vm.cities = data;
+				});
 
-				// --- states ---
-				vm.states = [
-						'State A',
-						'State B',
-						'State C',
-						'State D',
-						'State E'
-				];
-
-				// --- states ---
-				vm.cities = ['Buenos Aires','Bogotá','Bragado','Saint Louis','Santa Fe','San Fernando','San Luis','San Pedro','Santo Tomé','Santa Catalina','Saint Angels','Paso de los Libres','Paraná','Posadas'];
 
 				// --- modal open function ---
 				vm.openModal = function(){
@@ -95,6 +76,7 @@
 				};
 
 				vm.newAlert = function(alert) {
+					
 					vm.activeAlerts.push(alert);
 				};
 
@@ -128,20 +110,23 @@
 					}
 				];
 
+				// Any function returning a promise object can be used to load values asynchronously
+				vm.getLocation = function(val) {
+					return FormData.gmapsSearch(val)
+						.then(function(response){
+							return response.data.results.map(function(item){
+							return item.formatted_address;
+							});
+						}, function(error){
+							vm.newAlert({type: 'alert', msg: 'An error ocurred. No city found!'});
+						});
+				};
 
-				  // Any function returning a promise object can be used to load values asynchronously
-				  vm.getLocation = function(val) {
-				    return $http.get('//maps.googleapis.com/maps/api/geocode/json', {
-				      params: {
-				        address: val,
-				        sensor: false
-				      }
-				    }).then(function(response){
-				      return response.data.results.map(function(item){
-				        return item.formatted_address;
-				      });
-				    });
-				  };
+				// show-hide go to first step button
+				vm.show = function(){
+					return !$state.is('form.stepone') && !$state.is('form.steptwo') && !$state.is
+					('form.stepthree');
+				}
 
 			}])
 

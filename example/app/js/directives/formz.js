@@ -11,15 +11,13 @@ angular.module('formz', ['formz.tpls'])
 				require: '^form',
 				scope: {
 					model: '=fModel',
+					req: '=fRequired',
+					dis: '=fDisabled',
 					label: '@fLabel',
 					name: '@fName',
 					placeholder: '@fPlaceholder',
-					req: '=fRequired',
-					dis: '=fDisabled',
 					pattern: '@fPattern',
 					type: '@fType',
-					//leftAddon: '@fLeftAddon',
-					//rightAddon: '@fRightAddon'		
 				},
 				templateUrl: function(tElem, tAttrs){
 					return tAttrs.templateUrl || 'formz/templates/textField.html';
@@ -37,26 +35,19 @@ angular.module('formz', ['formz.tpls'])
 						var input = elem.find('input').attr('ng-pattern', new RegExp(scope.pattern));
 						$compile( input )(scope);
 					}
-					// make fields not required by default				
-					scope.isReq = attrs.fRequired !== undefined ? (attrs.fRequired !== '' ? attrs.fRequired : true) : false;
-					
+					// require fields					
 					scope.$watch(function(){
 						return scope.req;
-					}, function(newVal, oldVal){
-						newVal !== oldVal ? scope.isReq = newVal : '';
+					}, function(value){
+						scope.isReq = value;
 					});
 
-					// make fields not disabled by default
-					scope.isDis = attrs.fDisabled !== undefined ? (attrs.fDisabled !== '' ? attrs.fDisabled : true) : false;
-										
+					// disable fields
 					scope.$watch(function(){
 						return scope.dis;
-					}, function(newVal, oldVal){
-						newVal !== oldVal ? scope.isDis = newVal : '';
+					}, function(value){
+						scope.isDis = value;
 					});
-					// add addons
-					//scope.addLeftAddon = scope.leftAddon ? true : false;
-					//scope.addRightAddon = scope.rightAddon ? true : false
 				}
 			}
 	}]);
@@ -64,15 +55,8 @@ angular.module('formz', ['formz.tpls'])
 	angular.module("formz/templates/textField.html", []).run(["$templateCache", function($templateCache) {
 		$templateCache.put("formz/templates/textField.html",
 			"<div ng-class=\"{'has-error': form.{{::name}}.$touched && form.{{::name}}.$invalid }\" class='form-group'>\n" +
-			"  <label class='control-label'>{{::label}}</label>\n" +
+			"  <label class='control-label' for='{{::name}}'>{{::label}}</label>\n" +
 			"  <input ng-model='model' type='{{::type}}' name='{{::name}}' ng-required='isReq' ng-disabled='isDis' placeholder='{{::placeholder}}' class='form-control'/>\n" +
-/*			"  <input ng-model='model' type='{{::type}}' name='{{::name}}' ng-required='isReq' ng-disabled='isDis' ng-show='!addLeftAddon && !addRightAddon' placeholder='{{::placeholder}}' class='form-control'/>\n" +
-			"  <div ng-show='addLeftAddon || addRightAddon' class='input-group'>\n" +
-			"    <div ng-show='addLeftAddon' class='input-group-addon'>{{leftAddon}}</div>\n" +
-			"    <input ng-model='model' type='{{type}}' name='{{name}}' ng-required='isReq' ng-disabled='isDis' class='form-control'/>\n" +
-			"    <div ng-show='addRightAddon' class='input-group-addon'>{{rightAddon}}</div>\n" +
-			"  </div>\n" +
-*/
 			"</div>\n" +
 			"");
 		}]);

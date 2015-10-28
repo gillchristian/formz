@@ -1,6 +1,6 @@
 
 <form name="stepOne" novalidate="novalidate" class="form">
-  <alert ng-repeat="alert in vm.activeAlerts" type="{{alert.type}}" close="vm.dismissAlert($index)">{{alert.msg}}</alert>
+  <alert ng-repeat="alert in vm.activeAlerts track by $index" type="{{alert.type}}" close="vm.dismissAlert($index)">{{alert.msg}}</alert>
   <pre ng-click="vm.value = !vm.value">{{vm.value}}</pre>
   <data-text-field f-model="vm.form.name" f-label="Name" f-name="name" f-pattern="^[a-zA-Z]{1,25}$" f-disabled="stepOne.mail.$invalid"></data-text-field>
   <data-text-field f-model="vm.form.lastName" f-type="text" f-label="Last Name" f-name="lastName" f-pattern="^[a-zA-Z]{1,25}$" f-required="" f-placeholder="sarasa"></data-text-field>

@@ -1,6 +1,6 @@
 form.form(name='stepOne', novalidate)
   //- ----------------------------------------------------------------------------------
-  alert(ng-repeat='alert in vm.activeAlerts' type='{{alert.type}}' close='vm.dismissAlert($index)') {{alert.msg}}
+  alert(ng-repeat='alert in vm.activeAlerts track by $index' type='{{alert.type}}' close='vm.dismissAlert($index)') {{alert.msg}}
   //- ----------------------------------------------------------------------------------
   pre(ng-click='vm.value = !vm.value') {{vm.value}}
   data-text-field(f-model='vm.form.name', 
@@ -9,7 +9,8 @@ form.form(name='stepOne', novalidate)
       f-pattern='^[a-zA-Z]{1,25}$',
       f-disabled='stepOne.mail.$invalid')
   //- ----------------------------------------------------------------------------------
-  data-text-field(f-model='vm.form.lastName',
+  data-text-field(
+      f-model='vm.form.lastName',
       f-type='text', 
       f-label='Last Name', 
       f-name='lastName', 

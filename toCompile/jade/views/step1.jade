@@ -2,12 +2,12 @@ form.form(name='stepOne', novalidate)
   //- ----------------------------------------------------------------------------------
   alert(ng-repeat='alert in vm.activeAlerts track by $index' type='{{alert.type}}' close='vm.dismissAlert($index)') {{alert.msg}}
   //- ----------------------------------------------------------------------------------
-  pre(ng-click='vm.value = !vm.value') {{vm.value}}
   data-text-field(f-model='vm.form.name', 
       f-label='Name', 
       f-name='name', 
       f-pattern='^[a-zA-Z]{1,25}$',
-      f-disabled='stepOne.mail.$invalid')
+      f-required='true',
+      f-placeholder='your name')
   //- ----------------------------------------------------------------------------------
   data-text-field(
       f-model='vm.form.lastName',
@@ -15,8 +15,8 @@ form.form(name='stepOne', novalidate)
       f-label='Last Name', 
       f-name='lastName', 
       f-pattern='^[a-zA-Z]{1,25}$',
-      f-required='',
-      f-placeholder='sarasa')
+      f-required='true',
+      f-placeholder='your last name')
   //- ----------------------------------------------------------------------------------
   .form-group(ng-class="{'has-error': stepOne.mail.$touched && stepOne.mail.$invalid}")
     label.control-label Mail

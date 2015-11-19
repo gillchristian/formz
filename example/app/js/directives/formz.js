@@ -35,13 +35,16 @@ angular.module('formz', ['formz.tpls'])
 						var input = elem.find('input').attr('ng-pattern', new RegExp(scope.pattern));
 						$compile( input )(scope);
 					}
-					// require fields					
+					// make fields not required by default
+					scope.isReq = scope.req !== undefined ? (scope.req === 0 ? true : scope.req) : false;
+					// require fields
 					scope.$watch(function(){
 						return scope.req;
 					}, function(value){
 						scope.isReq = value;
 					});
-
+					// make fields not disabled by default
+					scope.isDis = scope.dis !== undefined ? (scope.dis === 0 ? true : scope.dis) : false;
 					// disable fields
 					scope.$watch(function(){
 						return scope.dis;

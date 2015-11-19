@@ -18,6 +18,10 @@ var TASKS = {
         style: 'build:css',
         js: 'build:js'
     },
+    ftp: {
+        deploy: 'ftp.deploy',
+        watch: 'watch:ftp.deploy',
+    },
     default: 'default'
 };
     

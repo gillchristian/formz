@@ -1,10 +1,12 @@
 'use strict';
    // this function is strict...
-
+   
 var gulp            = require('gulp'),
     rename          = require('gulp-rename'),
     sourcemaps      = require('gulp-sourcemaps'),
     uglify          = require('gulp-uglify'),
+    gutil = require( 'gulp-util' ),  
+    ftp = require( 'vinyl-ftp' ),
     // jade plugins
     plumber         = require('gulp-plumber'),
     jade            = require('gulp-jade'),
@@ -17,7 +19,20 @@ var gulp            = require('gulp'),
 
 var TASKS           = require('./gulp-config/tasks'),
     FILES           = require('./gulp-config/files'),
+    config          = require('./gulp-config/config'),
     postcssPlugins  = require('./gulp-config/postcssPlugins');
+       
+// helper function to build an FTP connection based on our configuration
+function getFtpConnection() {  
+    return ftp.create({
+        host: config.host,
+        port: config.port,
+        user: config.user,
+        password: config.password,
+        parallel: 5,
+        log: gutil.log
+    });
+}
 
 // deveolpment style tasks
 // --------------------------------------------------------
@@ -106,6 +121,46 @@ gulp.task(TASKS.watch.production.all, function () {
     gulp.watch( FILES.jade.all, [TASKS.dev.jade]);
     gulp.watch( FILES.css.all, [TASKS.production.style]);
     gulp.watch( FILES.js.source, [TASKS.production.js]);
+});
+
+// FTP Deploy tasks
+// --------------------------------------------------------
+
+/**
+ * Deploy task.
+ * Copies the new files to the server
+ *
+ * Usage: `FTP_USER=someuser FTP_PWD=somepwd gulp ftp-deploy`
+ */
+gulp.task(TASKS.ftp.deploy, function() {
+
+    var conn = getFtpConnection();
+
+    return gulp.src(config.localFilesGlob, { base: '.', buffer: false })
+        .pipe( conn.newer( config.remoteFolder ) ) // only upload newer files 
+        .pipe( conn.dest( config.remoteFolder ) )
+    ;
+});
+
+/**
+ * Watch deploy task.
+ * Watches the local copy for changes and copies the new files to the server whenever an update is detected
+ *
+ * Usage: `FTP_USER=someuser FTP_PWD=somepwd gulp ftp-deploy-watch`
+ */
+gulp.task(TASKS.ftp.watch, function() {
+
+    var conn = getFtpConnection();
+
+    gulp.watch(config.localFilesGlob)
+    .on('change', function(event) {
+      console.log('Changes detected! Uploading file "' + event.path + '", ' + event.type);
+
+      return gulp.src( [event.path], { base: '.', buffer: false } )
+        .pipe( conn.newer( config.remoteFolder ) ) // only upload newer files 
+        .pipe( conn.dest( config.remoteFolder ) )
+      ;
+    });
 });
 
 // default
